@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <title>Shrimpee</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
-
 </head>
+
 <body>
-<div class="container-fluid text-center">
-    <h2>Manage</h2>
+    <div style="text-align:left;">
+        <img src="images/title.png" width="200" height="200" align="left">
+        <font size="18" color="#ff7f50">Shrimpee</font>
+    </div>
+</body>
+
+<body>
+
+<div class="container-fluid text-center" >
+    <style type="text/css">
+        div{
+            margin-top: 20px;
+        }
+    </style>
+    <h2>Product_List</h2>
     <div class="m-2">
         <a class="h3" th:href="@{/users/new}">Add New Product</a>
     </div>
+
 
     <!--/*@thymesVar id="message" type=""*/-->
     <div class="alert-success text-center" th:if="${message}"></div>
@@ -45,6 +59,5 @@
             </tbody>
         </table>
     </div>
-</div>
 </body>
 </html>

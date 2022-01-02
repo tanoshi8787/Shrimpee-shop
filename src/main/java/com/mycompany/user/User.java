@@ -29,7 +29,6 @@ public class User {
         this.ProductName = firstName;
     }
 
-
     public String getProductPrice(){return ProductPrice;}
     public void setProductPrice(String BookPrices){this.ProductPrice = BookPrices;}
 
