@@ -13,6 +13,7 @@
         <a class="h3" th:href="@{/users/new}">Add New Product</a>
     </div>
 
+    <!--/*@thymesVar id="message" type=""*/-->
     <div class="alert-success text-center" th:if="${message}"></div>
 
     <div>
@@ -31,10 +32,10 @@
             <th:block th:each="user: ${listUsers}">
                 <tr>
                     <td>[[${user.id}]]</td>
-                    <td>[[${user.firstName}]]</td>
-                    <td>[[${user.BookPrices}]]</td>
-                    <td>[[${user.BookPages}]]</td>
-                    <td>[[${user.BookDescriptions}]]</td>
+                    <td>[[${user.ProductName}]]</td>
+                    <td>[[${user.ProductPrice}]]</td>
+                    <td>[[${user.Location}]]</td>
+                    <td>[[${user.ProductDate}]]</td>
                     <td>
                         <a class="h4 mr-3" th:href="@{'/users/edit/'+ ${user.id}}">Edit</a>
                         <a class="h4" th:href="@{'/users/delete/'+ ${user.id}}">Delete</a>
