@@ -1,0 +1,384 @@
+Index: src/main/java/com/mycompany/account/AccountController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mycompany/account/AccountController.java b/src/main/java/com/mycompany/account/AccountController.java
+deleted file mode 100644
+--- a/src/main/java/com/mycompany/account/AccountController.java	(revision c9d20e8d0a158ff0714409e0b5c7c8dcbbcfd52a)
++++ /dev/null	(revision c9d20e8d0a158ff0714409e0b5c7c8dcbbcfd52a)
+@@ -1,76 +0,0 @@
+-//package com.mycompany.account;
+-//
+-//import com.mycompany.user.User;
+-//import com.mycompany.user.UserNotFoundException;
+-//import com.mycompany.user.UserService;
+-//import org.springframework.beans.factory.annotation.Autowired;
+-//import org.springframework.stereotype.Controller;
+-//import org.springframework.stereotype.Service;
+-//import org.springframework.ui.Model;
+-//import org.springframework.web.bind.annotation.GetMapping;
+-//import org.springframework.web.bind.annotation.PathVariable;
+-//import org.springframework.web.bind.annotation.PostMapping;
+-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+-//
+-//import java.util.List;
+-//
+-//@Controller
+-//@Service
+-//public class AccountController {
+-//    @Autowired
+-//    private UserService service;
+-//
+-//    @GetMapping("/users")
+-//    public String showUserList(Model model) {
+-//        List<User> listUsers = service.listAll();
+-//        model.addAttribute("listUsers", listUsers);
+-//        return "users";
+-//    }
+-//
+-//    @GetMapping("/users/new")
+-//    public String showNewFrom(Model model) {
+-//        model.addAttribute("user", new User());
+-//
+-//        model.addAttribute("pageTitle", "Add New Book");
+-//        return "user_from";
+-//    }
+-//
+-//    @PostMapping("/users/save")
+-//    public String saveUser(User user, RedirectAttributes ra) {
+-//        service.save(user);
+-//        ra.addFlashAttribute("message", "The user has been saved successfully.");
+-//        return "redirect:/users";
+-//    }
+-//
+-//    /**
+-//     * Immplementation of updated and delete
+-//     */
+-//
+-//    @GetMapping("/users/edit/{id}")
+-//    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+-//        try {
+-//            User user = service.get(id);
+-//            model.addAttribute("user", user);
+-//            model.addAttribute("pageTitle", "Edit Book (ID: " + id + ")");
+-//
+-//            return "user_from";
+-//        } catch (UserNotFoundException e) {
+-//            ra.addFlashAttribute("message", e.getMessage());
+-//            return "redirect:/users";
+-//        }
+-//    }
+-//
+-//    @GetMapping("/users/delete/{id}")
+-//    public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
+-//        try {
+-//            service.delete(id);
+-//            ra.addFlashAttribute("message", "The user id" + id + "has been deleted");
+-//        } catch (UserNotFoundException e) {
+-//            ra.addFlashAttribute("message", e.getMessage());
+-//        }
+-//        return "redirect:/users";
+-//
+-//    }
+-//
+-//
+-//}
+Index: src/main/java/com/mycompany/account/Account.java
+===================================================================
+diff --git a/src/main/java/com/mycompany/account/Account.java b/src/main/java/com/mycompany/user/Account.java
+rename from src/main/java/com/mycompany/account/Account.java
+rename to src/main/java/com/mycompany/user/Account.java
+--- a/src/main/java/com/mycompany/account/Account.java	(revision c9d20e8d0a158ff0714409e0b5c7c8dcbbcfd52a)
++++ b/src/main/java/com/mycompany/user/Account.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -1,4 +1,4 @@
+-package com.mycompany.account;
++package com.mycompany.user;
+ 
+ import javax.persistence.*;
+ 
+@@ -44,17 +44,16 @@
+     public String getAccountPassword(){return AccountPassword;}
+     public void setAccountPassword(String AccountPassword){this.AccountPassword = AccountPassword;}
+     //下面式幹嘛的
+-//    @Override
+-//    public String toAccountString() {
+-//        return "User{" +
+-//                "AccountId=" + getAccountId() +
+-//
+-//                ", AccountName='" + getAccountName() + '\'' +
+-//                ", AccountPhone='" + getAccountPhone() +'\'' +
+-//                ", AccountAddress='" + getAccountAddress() +'\'' +
+-//                ", Account='" + getAccount() + '\'' +
+-//                ", AccountPassword='" + getAccountPassword() + '\'' +
+-//                '}';
+-//    }
++    @Override
++    public String toString() {
++        return "Account{" +
++                "AccountId=" + getAccountId() +
++                ", AccountName='" + getAccountName() + '\'' +
++                ", AccountPhone='" + getAccountPhone() +'\'' +
++                ", AccountAddress='" + getAccountAddress() +'\'' +
++                ", Account='" + getAccount() + '\'' +
++                ", AccountPassword='" + getAccountPassword() + '\'' +
++                '}';
++    }
+ 
+ }
+Index: src/main/java/com/mycompany/user/AccountController.java
+===================================================================
+diff --git a/src/main/java/com/mycompany/user/AccountController.java b/src/main/java/com/mycompany/user/AccountController.java
+new file mode 100644
+--- /dev/null	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
++++ b/src/main/java/com/mycompany/user/AccountController.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -0,0 +1,71 @@
++package com.mycompany.user;
++
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Controller;
++import org.springframework.stereotype.Service;
++import org.springframework.ui.Model;
++import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.PathVariable;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.servlet.mvc.support.RedirectAttributes;
++
++import java.util.List;
++
++@Controller
++@Service
++public class AccountController {
++    @Autowired
++    private AccountService service;
++
++    @GetMapping("/users")
++    public String showUserList(Model model) {
++        List<Account> listAccount = service.listAll();
++        model.addAttribute("listAccount", listAccount);
++        return "users";
++    }
++
++    @GetMapping("/users/login")
++    public String showNewFrom(Model model) {
++        model.addAttribute("account", new Account());
++        
++        model.addAttribute("pageTitle", "Add New Book");
++        return "user_login";
++    }
++
++    @PostMapping("/users/save1")
++    public String saveUser(Account user, RedirectAttributes ra) {
++        service.save(user);
++        ra.addFlashAttribute("message", "The user has been saved successfully.");
++        return "redirect:/users";
++    }
++
++    /**
++     * Immplementation of updated and delete
++     */
++
++//    @GetMapping("/users/edit/{id}")
++//    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
++//        try {
++//            User user = service.get(id);
++//            model.addAttribute("user", user);
++//            model.addAttribute("pageTitle", "Edit Book (ID: " + id + ")");
++//
++//            return "user_from";
++//        } catch (UserNotFoundException e) {
++//            ra.addFlashAttribute("message", e.getMessage());
++//            return "redirect:/users";
++//        }
++//    }
++//
++//    @GetMapping("/users/delete/{id}")
++//    public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
++//        try {public interface UserRepository extends CrudRepository<User, Integer> {
++//            service.delete(id);
++//            ra.addFlashAttribute("message", "The user id" + id + "has been deleted");
++//        } catch (UserNotFoundException e) {
++//            ra.addFlashAttribute("message", e.getMessage());
++//        }
++//        return "redirect:/users";
++//
++//    }
++}
+Index: src/main/java/com/mycompany/user/AccountNotFoundException.java
+===================================================================
+diff --git a/src/main/java/com/mycompany/user/AccountNotFoundException.java b/src/main/java/com/mycompany/user/AccountNotFoundException.java
+new file mode 100644
+--- /dev/null	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
++++ b/src/main/java/com/mycompany/user/AccountNotFoundException.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -0,0 +1,7 @@
++package com.mycompany.user;
++
++public class AccountNotFoundException extends Throwable {
++    public AccountNotFoundException(String message) {
++        super(message);
++    }
++}
+Index: src/main/java/com/mycompany/user/AccountRepository.java
+===================================================================
+diff --git a/src/main/java/com/mycompany/user/AccountRepository.java b/src/main/java/com/mycompany/user/AccountRepository.java
+new file mode 100644
+--- /dev/null	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
++++ b/src/main/java/com/mycompany/user/AccountRepository.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -0,0 +1,8 @@
++package com.mycompany.user;
++
++import org.springframework.data.repository.CrudRepository;
++
++
++public interface AccountRepository extends CrudRepository<Account, Integer> {
++    public Long countById(Integer id);
++}
+Index: src/main/java/com/mycompany/user/AccountService.java
+===================================================================
+diff --git a/src/main/java/com/mycompany/user/AccountService.java b/src/main/java/com/mycompany/user/AccountService.java
+new file mode 100644
+--- /dev/null	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
++++ b/src/main/java/com/mycompany/user/AccountService.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -0,0 +1,44 @@
++package com.mycompany.user;
++
++
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++
++import java.util.List;
++import java.util.Optional;
++
++@Service
++public class AccountService {
++    @Autowired
++    private AccountRepository repo;
++
++    public List<Account> listAll() {
++        return (List<Account>) repo.findAll();
++    }
++
++    public void save(Account user) {
++        repo.save(user);
++    }
++
++    public Account get(Integer id) throws AccountNotFoundException {
++        Optional<Account> result = repo.findById(id);
++        if (result.isPresent()) {
++            return result.get();
++        }
++        throw new AccountNotFoundException("Could not find any users with ID" + id);
++    }
++
++    /*
++    Implement for the delete handling
++     */
++
++    public void delete(Integer id) throws AccountNotFoundException {
++        Long count = repo.countById(id);
++        if (count == null || count == 0) {
++            throw new AccountNotFoundException("Could not find any users with ID" + id);
++        }
++        repo.deleteById(id);
++    }
++}
++
++
+Index: src/main/java/com/mycompany/user/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mycompany/user/UserController.java b/src/main/java/com/mycompany/user/UserController.java
+--- a/src/main/java/com/mycompany/user/UserController.java	(revision c9d20e8d0a158ff0714409e0b5c7c8dcbbcfd52a)
++++ b/src/main/java/com/mycompany/user/UserController.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -68,6 +68,4 @@
+         return "redirect:/users";
+ 
+     }
+-
+-
+ }
+Index: src/main/java/com/mycompany/user/UserService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/mycompany/user/UserService.java b/src/main/java/com/mycompany/user/UserService.java
+--- a/src/main/java/com/mycompany/user/UserService.java	(revision c9d20e8d0a158ff0714409e0b5c7c8dcbbcfd52a)
++++ b/src/main/java/com/mycompany/user/UserService.java	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -40,3 +40,5 @@
+         repo.deleteById(id);
+     }
+ }
++
++
+Index: src/main/resources/templates/user_login.html
+===================================================================
+diff --git a/src/main/resources/templates/user_login.html b/src/main/resources/templates/user_login.html
+new file mode 100644
+--- /dev/null	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
++++ b/src/main/resources/templates/user_login.html	(revision e5bac5ab37e54d81b68ed7b72ce14c3af6e65c0a)
+@@ -0,0 +1,61 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:th="http://www.thymeleaf.org">
++<head>
++    <meta charset="UTF-8">
++    <title>[[${pageTitle}]]</title>
++    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
++
++</head>
++<body>
++<div class="container-fluid ">
++   <div class="text-center"><h2>註冊帳號</h2></div>
++    <form th:action="@{/users/save1}" method="post" th:object="${account}"
++    style="max-width: 500px; margin:0 auto;">
++        <input type="hidden" th:field="*{AccountId}">
++        <div class="border border-secondary rounded p-3">
++            <div class="form-group row">
++                <label class="col-sm-4 col-form-label">帳號</label>
++                <div class="col-sm-8">
++                    <input type="text" th:field="*{Account}" class="form-control" required minlength="2" maxlength="45"/>
++                </div>
++            </div>
++            <div class="form-group row">
++                <label class="col-sm-4 col-form-label">密碼</label>
++                <div class="col-sm-8">
++                    <input type="text" th:field="*{AccountPassword}" class="form-control" required minlength="1" maxlength="45"/>
++                </div>
++            </div>
++            <div class="form-group row">
++                <label class="col-sm-4 col-form-label">姓名</label>
++                <div class="col-sm-8">
++                    <input type="text" th:field="*{AccountName}" class="form-control" required minlength="1" maxlength="45"/>
++                </div>
++            </div>
++            <div class="form-group row">
++                <label class="col-sm-4 col-form-label">電話</label>
++                <div class="col-sm-8">
++                    <input type="text" th:field="*{AccountPhone}" class="form-control" required minlength="1" maxlength="45"/>
++                </div>
++            </div>
++            <div class="form-group row">
++                <label class="col-sm-4 col-form-label">地址</label>
++                <div class="col-sm-8">
++                    <input type="text" th:field="*{AccountAddress}" class="form-control" required minlength="1" maxlength="45"/>
++                </div>
++            </div>
++            <div class="text-center">
++                <button type="submit" class="btn btn-primary m-2">註冊</button>
++                <button onclick="cancelForm()" type="button" class="btn btn-secondary m-2">取消</button>
++            </div>
++
++        </div>
++
++    </form>
++</div>
++<script type="text/javascript">
++    function cancelForm() {
++        window.location="[[@{/users}]]";
++    }
++</script>
++</body>
++</html>
+\ No newline at end of file

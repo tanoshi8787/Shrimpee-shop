@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shrimpee</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+</head>
+
+<body style="background-color: peachpuff">
+    <div style="text-align:left;">
+        <a th:href="@{/}"><img src="images/title (1).png" width="200" height="200" align="left"></a>
+        <font size="18" face="微軟正黑體" color="#ff7f50">Shrimpee</font>
+    </div>
+</body>
+
+<body style="background-color: peachpuff">
+
+<div class="container-fluid text-center" >
+    <style type="text/css" >
+        div{
+            margin-top: 0px;
+        }
+    </style>
+    <h2 face="微軟正黑體" >Product_List</h2>
+    <div class="m-2">
+        <a class="h3" face="微軟正黑體" th:href="@{/users/new}">Add New Product</a>
+    </div>
+
+
+    <!--/*@thymesVar id="message" type=""*/-->
+    <div class="alert-success text-center" th:if="${message}"></div>
+
+    <div>
+        <table class="table table-bordered" style="border-color: black">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>品名</th>
+                <th>價格</th>
+                <th>產地</th>
+                <th>日期</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user: ${listUsers}">
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.ProductName}]]</td>
+                    <td>[[${user.ProductPrice}]]</td>
+                    <td>[[${user.Location}]]</td>
+                    <td>[[${user.ProductDate}]]</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/users/edit/'+ ${user.id}}">Edit</a>
+                        <a class="h4" th:href="@{'/users/delete/'+ ${user.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
