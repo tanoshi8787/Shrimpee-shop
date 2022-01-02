@@ -30,13 +30,13 @@ public class User {
     }
 
     public String getProductPrice(){return ProductPrice;}
-    public void setProductPrice(String BookPrices){this.ProductPrice = BookPrices;}
+    public void setProductPrice(String Prices){this.ProductPrice = Prices;}
 
     public String getLocation(){return Location;}
-    public void setLocation(String BookPages){this.Location = BookPages;}
+    public void setLocation(String Loc){this.Location = Loc;}
 
     public String getProductDate(){return ProductDate;}
-    public void setProductDate(String BookDescriptions){this.ProductDate = BookDescriptions;}
+    public void setProductDate(String Date){this.ProductDate = Date;}
 
     @Override
     public String toString() {
