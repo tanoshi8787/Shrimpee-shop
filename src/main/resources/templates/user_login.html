@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+
+</head>
+<body>
+<div class="container-fluid ">
+   <div class="text-center"><h2>註冊帳號</h2></div>
+    <form th:action="@{/users/save1}" method="post" th:object="${account}"
+    style="max-width: 500px; margin:0 auto;">
+        <input type="hidden" th:field="*{AccountId}">
+        <div class="border border-secondary rounded p-3">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">帳號</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{Account}" class="form-control" required minlength="2" maxlength="45"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">密碼</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{AccountPassword}" class="form-control" required minlength="1" maxlength="45"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">姓名</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{AccountName}" class="form-control" required minlength="1" maxlength="45"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">電話</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{AccountPhone}" class="form-control" required minlength="1" maxlength="45"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">地址</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{AccountAddress}" class="form-control" required minlength="1" maxlength="45"/>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2">註冊</button>
+                <button onclick="cancelForm()" type="button" class="btn btn-secondary m-2">取消</button>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+    function cancelForm() {
+        window.location="[[@{/users}]]";
+    }
+</script>
+</body>
+</html>

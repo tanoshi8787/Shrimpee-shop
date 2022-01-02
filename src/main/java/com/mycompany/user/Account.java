@@ -1,4 +1,4 @@
-package com.mycompany.account;
+package com.mycompany.user;
 
 import javax.persistence.*;
 
@@ -44,17 +44,16 @@ public class Account {
     public String getAccountPassword(){return AccountPassword;}
     public void setAccountPassword(String AccountPassword){this.AccountPassword = AccountPassword;}
     //下面式幹嘛的
-//    @Override
-//    public String toAccountString() {
-//        return "User{" +
-//                "AccountId=" + getAccountId() +
-//
-//                ", AccountName='" + getAccountName() + '\'' +
-//                ", AccountPhone='" + getAccountPhone() +'\'' +
-//                ", AccountAddress='" + getAccountAddress() +'\'' +
-//                ", Account='" + getAccount() + '\'' +
-//                ", AccountPassword='" + getAccountPassword() + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Account{" +
+                "AccountId=" + getAccountId() +
+                ", AccountName='" + getAccountName() + '\'' +
+                ", AccountPhone='" + getAccountPhone() +'\'' +
+                ", AccountAddress='" + getAccountAddress() +'\'' +
+                ", Account='" + getAccount() + '\'' +
+                ", AccountPassword='" + getAccountPassword() + '\'' +
+                '}';
+    }
 
 }
