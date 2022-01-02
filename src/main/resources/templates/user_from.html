@@ -15,7 +15,7 @@
         <input type="hidden" th:field="*{id}">
         <div class="border border-secondary rounded p-3">
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ProductName</label>
+                <label class="col-sm-4 col-form-label">產品名稱</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{productName}" class="form-control" required minlength="2" maxlength="45"/>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ProductPrice</label>
+                <label class="col-sm-4 col-form-label">價格</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{productPrice}" class="form-control" required minlength="1" maxlength="45"/>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Location</label>
+                <label class="col-sm-4 col-form-label">產地</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{location}" class="form-control" required minlength="1" maxlength="45"/>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ProductDate</label>
+                <label class="col-sm-4 col-form-label">生產時間</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{productDate}" class="form-control" required minlength="1" maxlength="45"/>
@@ -47,8 +47,8 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary m-2">Save</button>
-                <button onclick="cancelForm()" type="button" class="btn btn-secondary m-2">Cancel</button>
+                <button type="submit" class="btn btn-primary m-2">储存</button>
+                <button onclick="cancelForm()" type="button" class="btn btn-secondary m-2">取消</button>
             </div>
 
         </div>

@@ -28,7 +28,7 @@ public class UserController {
     public String showNewFrom(Model model) {
         model.addAttribute("user", new User());
         
-        model.addAttribute("pageTitle", "Add New Product");
+        model.addAttribute("pageTitle", "新增品項");
         return "user_from";
     }
 
@@ -48,7 +48,7 @@ public class UserController {
         try {
             User user = service.get(id);
             model.addAttribute("user", user);
-            model.addAttribute("pageTitle", "Edit Book (ID: " + id + ")");
+            model.addAttribute("pageTitle", "修改(產品ID: " + id + ")");
 
             return "user_from";
         } catch (UserNotFoundException e) {
