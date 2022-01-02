@@ -21,7 +21,7 @@ public class UserRepositoryTests {
     public void testAddNew() {
         User user = new User();
 
-        user.setFirstName("abcjsdksjdk");
+        user.setProductName("abcjsdksjdk");
 
        User savedUser = repo.save(user);
        System.out.println(user);
@@ -43,11 +43,11 @@ public class UserRepositoryTests {
         Integer userId = 3;
         Optional<User> optionalUser = repo.findById(userId);
         User user = optionalUser.get();
-        user.setFirstName("user999");
+        user.setProductName("user999");
         repo.save(user);
 
         User updatedUser = repo.findById(userId).get();
-        Assertions.assertThat(updatedUser.getFirstName()).isEqualTo("user");
+        Assertions.assertThat(updatedUser.getProductName()).isEqualTo("user");
     }
 
     @Test
