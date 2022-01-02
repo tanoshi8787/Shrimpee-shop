@@ -28,19 +28,14 @@ public class UserController {
     public String showNewFrom(Model model) {
         model.addAttribute("user", new User());
         
-        model.addAttribute("pageTitle", "Add New Book");
+        model.addAttribute("pageTitle", "Add New Product");
         return "user_from";
-    }
-
-    @GetMapping("/users/login")
-    public String login() {
-        return "login";
     }
 
     @PostMapping("/users/save")
     public String saveUser(User user, RedirectAttributes ra) {
         service.save(user);
-        ra.addFlashAttribute("message", "The user has been saved successfully.");
+        ra.addFlashAttribute("message", "The product has been saved successfully.");
         return "redirect:/users";
     }
 
@@ -73,4 +68,10 @@ public class UserController {
         return "redirect:/users";
 
     }
+
+    @GetMapping("/users/login")
+    public String login() {
+        return "user_login";
+    }
+
 }

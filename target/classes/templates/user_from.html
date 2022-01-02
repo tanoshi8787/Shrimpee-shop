@@ -7,8 +7,9 @@
 
 </head>
 <body>
+<body style="background-color: peachpuff">
 <div class="container-fluid ">
-   <div class="text-center"><h2>增加/修改商品資訊</h2></div>
+   <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
     <form th:action="@{/users/save}" method="post" th:object="${user}"
     style="max-width: 500px; margin:0 auto;">
         <input type="hidden" th:field="*{id}">
