@@ -1,4 +1,4 @@
-package com.mycompany.user;
+package com.mycompany.account;
 
 import javax.persistence.*;
 
