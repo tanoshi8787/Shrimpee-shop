@@ -8,13 +8,13 @@
 </head>
 <body>
 <div class="container-fluid ">
-   <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+   <div class="text-center"><h2>增加/修改商品資訊</h2></div>
     <form th:action="@{/users/save}" method="post" th:object="${user}"
     style="max-width: 500px; margin:0 auto;">
         <input type="hidden" th:field="*{id}">
         <div class="border border-secondary rounded p-3">
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ProductName</label>
+                <label class="col-sm-4 col-form-label">商品名稱</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{productName}" class="form-control" required minlength="2" maxlength="45"/>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ProductPrice</label>
+                <label class="col-sm-4 col-form-label">商品價格</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{productPrice}" class="form-control" required minlength="1" maxlength="45"/>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Location</label>
+                <label class="col-sm-4 col-form-label">產地</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{location}" class="form-control" required minlength="1" maxlength="45"/>
@@ -38,18 +38,48 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">ProductDate</label>
+                <label class="col-sm-4 col-form-label">生產日期</label>
                 <div class="col-sm-8">
                     <label>
                         <input type="text" th:field="*{productDate}" class="form-control" required minlength="1" maxlength="45"/>
                     </label>
                 </div>
             </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary m-2">Save</button>
-                <button onclick="cancelForm()" type="button" class="btn btn-secondary m-2">Cancel</button>
-            </div>
+            //
+            <div class="form-group col-md-12">
+                <label>图片上传</label>
+                <div class="form-controls">
 
+                    <ul class="list-inline clearfix lyear-uploads-pic">
+
+                        <div class="upload-content">
+                            <h3>上傳圖片</h3>
+
+                            <div class="content-img">
+                                <ul class="content-img-list"></ul>
+                                <div class="file">
+
+                                    <i class="mdi mdi-plus fa-3x"></i>
+                                    <!--															<input type="file" name="imgs" accept="image/*"  multiple>-->
+                                    <input type="file" name="imgs" accept="image/*" id="upload" multiple>
+
+                                </div>
+                            </div>
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            //
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2">確定</button>
+                <button onclick="cancelForm()" type="button" class="btn btn-secondary m-2">取消</button>
+            </div>
         </div>
 
     </form>

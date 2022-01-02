@@ -32,6 +32,11 @@ public class UserController {
         return "user_from";
     }
 
+    @GetMapping("/users/login")
+    public String login() {
+        return "login";
+    }
+
     @PostMapping("/users/save")
     public String saveUser(User user, RedirectAttributes ra) {
         service.save(user);

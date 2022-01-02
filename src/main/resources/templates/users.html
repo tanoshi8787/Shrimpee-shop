@@ -11,8 +11,13 @@
     <h2>Manage</h2>
     <div class="m-2">
         <a class="h3" th:href="@{/users/new}">Add New Product</a>
+
     </div>
 
+    <div style="text-align:right;">
+        <a class="h3" href="/users/login">註冊</a>
+        <a class="h3" href="/users/login">登入</a>
+    </div>
     <!--/*@thymesVar id="message" type=""*/-->
     <div class="alert-success text-center" th:if="${message}"></div>
 
