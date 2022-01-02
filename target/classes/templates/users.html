@@ -6,24 +6,24 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
 </head>
 
-<body>
+<body style="background-color: peachpuff">
     <div style="text-align:left;">
-        <img src="images/title.png" width="200" height="200" align="left">
-        <font size="18" color="#ff7f50">Shrimpee</font>
+        <a th:href="@{/}"><img src="images/title (1).png" width="200" height="200" align="left"></a>
+        <font size="18" face="微軟正黑體" color="#ff7f50">Shrimpee</font>
     </div>
 </body>
 
-<body>
+<body style="background-color: peachpuff">
 
 <div class="container-fluid text-center" >
-    <style type="text/css">
+    <style type="text/css" >
         div{
-            margin-top: 20px;
+            margin-top: 0px;
         }
     </style>
-    <h2>Product_List</h2>
+    <h2 face="微軟正黑體" >Product_List</h2>
     <div class="m-2">
-        <a class="h3" th:href="@{/users/new}">Add New Product</a>
+        <a class="h3" face="微軟正黑體" th:href="@{/users/new}">Add New Product</a>
     </div>
 
 
@@ -31,7 +31,7 @@
     <div class="alert-success text-center" th:if="${message}"></div>
 
     <div>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="border-color: black">
             <thead class="thead-dark">
             <tr>
                 <th>ID</th>
